@@ -370,8 +370,8 @@ function getFalsyValuesCount(arr) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  return arr.reduce((sum, curr) => sum + (curr === item), 0);
 }
 
 /**
@@ -415,8 +415,19 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  return arr.sort((x, y) => {
+    if (x.country === y.country) {
+      if (x.city > y.city) {
+        return true;
+      }
+      return -1;
+    }
+    if (x.country > y.country) {
+      return true;
+    }
+    return -1;
+  });
 }
 
 /**
@@ -454,8 +465,12 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  if (start === end) {
+    return [start];
+  }
+  const array = new Array(end - start + 1).fill(start);
+  return array.map((el, index) => el + index);
 }
 
 /**
